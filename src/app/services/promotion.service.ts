@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Promotion} from "../share/promotion";
-import {PROMOTIONS} from "../share/promotions";
+import {Promotion} from '../share/promotion';
+import {PROMOTIONS} from '../share/promotions';
 
 @Injectable()
 export class PromotionService {
@@ -13,12 +13,10 @@ export class PromotionService {
   }
 
   getPromotion(id: number): Promotion {
-    return PROMOTIONS.filter((promotion) => (promotion.id === id))[0];
+    return PROMOTIONS.filter((promotion) => promotion.id === id)[0];
   }
 
   getFeaturedPromotion(): Promotion {
     return PROMOTIONS.filter(promotion => promotion.featured)[0];
   }
-
-
 }

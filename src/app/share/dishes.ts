@@ -91,8 +91,7 @@ export const DISHES: Dish[] = [
     category: 'appetizer',
     label: 'New',
     price: '1.99',
-    featured: false,
-    description: 'A quintessential ConFusion experience, is it a vada or is it a donut?',
+    featured: false, description: 'A quintessential ConFusion experience, is it a vada or is it a donut?',
     comments: [
       {
         rating: 5,
