@@ -41,6 +41,39 @@
         <p md-line>--{{comment.author}}{{comment.date|date}}</p>
       </md-list-item>
     </md-list>
+    <!--TODO: reactive Form about comment
+        1. angular material slider
+        2. submit button check form valid
+        3. hint error message bottom field
+    -->
+    <form class="form-size" novalidate [formGroup]="commentForm" (ngSubmit)="onCommentSubmit()">
+      <p>
+
+        <!--author-->
+        <md-input-container>
+          <input mdInput type="text" formControlName="author" placeholder="Name" required>
+          <!--<md-hint>-->
+          <!--<span [hidden]="commentFormErrors.author">-->
+          <!--{{commentFormErrors.author}}-->
+          <!--</span>-->
+          <!--</md-hint>-->
+        </md-input-container>
+      </p>
+      <p>
+        <!--rating-->
+        <md-slider min="1" max="5" step="1" value="5" formGroupName="rating" thumb-label="true"></md-slider>
+      </p>
+      <p>
+        <md-input-container>
+          <textarea mdInput rows="10" formControlName="comment" placeholder="Your Comment" required></textarea>
+        </md-input-container>
+      </p>
+      <button type="submit" md-button class="background-primary text-floral-white" [disabled]="commentForm.invalid">
+        Submit
+      </button>
+    </form>
+
   </div>
+
 
 </div>

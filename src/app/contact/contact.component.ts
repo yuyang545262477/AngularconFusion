@@ -94,17 +94,5 @@ export class ContactComponent implements OnInit {
             });
         }
       });
-    // if (!this.feedbackForm) return;
-    // Object.keys(this.formErrors)
-    //   .map(key => {
-    //     this.formErrors[key] = '';
-    //     if (this.feedbackForm[key].dirty && this.feedbackForm[key].invalid) {
-    //       Object.keys(this.feedbackForm[key].errors).map(errorKey => {
-    //         this.formErrors[key] += this.validationMessages[key][errorKey] + '';
-    //       });
-    //     }
-    //   });
-    //
-
   }
 }
