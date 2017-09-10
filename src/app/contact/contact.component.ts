@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Feedback} from '../share/feedback';
 import {ContactType} from '../share/contactType';
+import {Feedback} from '../share/feedback';
 
 @Component({
   selector: 'app-contact',
@@ -83,6 +83,28 @@ export class ContactComponent implements OnInit {
   }
 
   private onValueChanged(data?: any) {
+    if (!this.feedbackForm) return;
+    Object.keys(this.formErrors)
+      .map(key => {
+        this.formErrors[key] = '';
+        if (this.feedbackForm.get(key).dirty && this.feedbackForm.get(key).invalid) {
+          Object.keys(this.feedbackForm.get(key).errors)
+            .map(errorKey => {
+              this.formErrors[key] += this.validationMessages[key][errorKey] + ' ';
+            });
+        }
+      });
+    // if (!this.feedbackForm) return;
+    // Object.keys(this.formErrors)
+    //   .map(key => {
+    //     this.formErrors[key] = '';
+    //     if (this.feedbackForm[key].dirty && this.feedbackForm[key].invalid) {
+    //       Object.keys(this.feedbackForm[key].errors).map(errorKey => {
+    //         this.formErrors[key] += this.validationMessages[key][errorKey] + '';
+    //       });
+    //     }
+    //   });
+    //
 
   }
 }
