@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {DishService} from '../services/dish.service';
 import {LeaderService} from '../services/leader.service';
 import {PromotionService} from '../services/promotion.service';
-import {Dish} from '../share/dish';
-import {Leader} from '../share/leader';
-import {Promotion} from '../share/promotion';
+import {Dish} from '../shared/dish';
+import {Leader} from '../shared/leader';
+import {Promotion} from '../shared/promotion';
 
 @Component({
   selector: 'app-home',

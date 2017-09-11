@@ -5,7 +5,7 @@ import {ActivatedRoute, Data, Params} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import {DishService} from '../services/dish.service';
 
-import {Dish} from '../share/dish';
+import {Dish} from '../shared/dish';
 
 @Component({
   selector: 'app-dishdetail',

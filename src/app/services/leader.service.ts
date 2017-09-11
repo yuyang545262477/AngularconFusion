@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs/Observable";
-import {Leader} from '../share/leader';
-import {LEADERS} from '../share/leaders';
+import {Leader} from '../shared/leader';
+import {LEADERS} from '../shared/leaders';
 
 @Injectable()
 export class LeaderService {

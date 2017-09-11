@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs/Observable";
-import {Promotion} from '../share/promotion';
-import {PROMOTIONS} from '../share/promotions';
+import {Promotion} from '../shared/promotion';
+import {PROMOTIONS} from '../shared/promotions';
 
 @Injectable()
 export class PromotionService {

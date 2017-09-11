@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ContactType} from '../share/contactType';
-import {Feedback} from '../share/feedback';
+import {ContactType} from '../shared/contactType';
+import {Feedback} from '../shared/feedback';
 
 @Component({
   selector: 'app-contact',
