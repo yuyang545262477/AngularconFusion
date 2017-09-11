@@ -21,6 +21,8 @@ import {DishService} from './services/dish.service';
 import {PromotionService} from './services/promotion.service';
 import {LeaderService} from './services/leader.service';
 import {LoginComponent} from './login/login.component';
+import {HttpModule} from '@angular/http';
+import {baseURL} from './shared/baseurl';
 
 // noinspection JSDeprecatedSymbols
 @NgModule({
@@ -42,9 +44,10 @@ import {LoginComponent} from './login/login.component';
     FlexLayoutModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule
   ],
-  providers: [DishService, PromotionService, LeaderService],
+  providers: [DishService, PromotionService, LeaderService, {provide: 'BaseURl', useValue: baseURL}],
   entryComponents: [LoginComponent],
   bootstrap: [AppComponent]
 })

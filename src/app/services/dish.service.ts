@@ -1,14 +1,18 @@
 import {Injectable} from '@angular/core';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/catch';
 import {Observable} from 'rxjs/Observable';
 import {Dish} from '../shared/dish';
 import {DISHES} from '../shared/dishes';
+import {Http} from '@angular/http';
+import {ProcessHttpMsgService} from './process-http-msg.service';
 
 @Injectable()
 export class DishService {
 
-  constructor() {
+  constructor(private _http: Http,
+              private _procssHTTPMsgService: ProcessHttpMsgService) {
   }
 
   getDishes(): Observable<Dish[]> {
