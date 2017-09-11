@@ -41,16 +41,17 @@
         <p md-line>--{{comment.author}}{{comment.date|date}}</p>
       </md-list-item>
     </md-list>
-    <!--TODO: reactive Form about comment
-        1. angular material slider
-        2. submit button check form valid
-        3. hint error message bottom field
-    -->
     <form class="form-size" novalidate [formGroup]="commentForm" (ngSubmit)="onCommentSubmit()">
+      <md-list class="preview" *ngIf="commentForm.valid">
+        <md-list-item>
+          <p md-line>{{commentForm.value.comment}}</p>
+          <p md-line>{{commentForm.value.rating}} Starts</p>
+          <p md-line>--{{commentForm.value.author}}</p>
+        </md-list-item>
+      </md-list>
       <p>
-
         <!--author-->
-        <md-input-container>
+        <md-input-container dividerColor="{{commentFormErrors.author?'warn':'primary'}}">
           <input mdInput type="text" formControlName="author" placeholder="Name" required>
           <md-hint>
           <span [hidden]="!(commentFormErrors.author)">
@@ -61,11 +62,12 @@
       </p>
       <p>
         <!--rating-->
-        <md-slider min="1" max="5" step="1" value="5" formGroupName="rating" thumb-label="true"></md-slider>
+        <md-slider min="1" max="5" step="1" value="5" formGroupName="rating" thumb-label="true"
+                   formControlName="rating"></md-slider>
       </p>
       <p>
-        <md-input-container>
-          <textarea mdInput rows="10" formControlName="comment" placeholder="Your Comment" required></textarea>
+        <md-input-container dividerColor="{{commentFormErrors.comment?'warn':'primary'}}">
+          <textarea mdInput rows="5" formControlName="comment" placeholder="Your Comment" required></textarea>
           <md-hint [hidden]="!(commentFormErrors.comment)">
             <span>{{commentFormErrors.comment}}</span>
           </md-hint>

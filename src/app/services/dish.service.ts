@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
-import {Observable} from "rxjs/Observable";
+import {Observable} from 'rxjs/Observable';
 import {Dish} from '../share/dish';
 import {DISHES} from '../share/dishes';
 

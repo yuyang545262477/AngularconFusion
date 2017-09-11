@@ -1,7 +1,7 @@
 import {Location} from '@angular/common';
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Data, Params} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import {DishService} from '../services/dish.service';
 
@@ -94,7 +94,18 @@ export class DishdetailComponent implements OnInit {
   }
 
   onCommentSubmit() {
-    console.log('comment submit');
+
+    /**@des update comments*/
+    this.commentForm.controls['date'].setValue(new Date().toISOString());
+    this.dish.comments.push(this.commentForm.value);
+    /**@des reset form*/
+    this.commentForm.reset({
+      rating: 5,
+      comment: '',
+      author: '',
+      date: ''
+    });
+
   }
 
   private onCommentFormValueChange(data?: any) {
@@ -109,4 +120,12 @@ export class DishdetailComponent implements OnInit {
         }
       });
   }
+
+  // private resetClear() {
+  //   if (!this.commentForm) return;
+  //   Object.keys(this.commentForm.controls).map(key => {
+  //     console.log(this.commentForm.controls[key]);
+  //     this.commentForm.controls[key].setErrors(null);
+  //   });
+  // }
 }

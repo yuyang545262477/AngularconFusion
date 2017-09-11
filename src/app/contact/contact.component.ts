@@ -80,6 +80,7 @@ export class ContactComponent implements OnInit {
       message: ''
     });
 
+
   }
 
   private onValueChanged(data?: any) {
