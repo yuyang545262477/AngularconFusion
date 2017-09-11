@@ -1,6 +1,6 @@
 import {Location} from '@angular/common';
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Params} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import {DishService} from '../services/dish.service';
@@ -19,17 +19,20 @@ export class DishdetailComponent implements OnInit {
   dishIds: number[];
   prev: number;
   next: number;
-  mdSlider: {
-    min: 0,
-    max: 6,
-    step: 1,
-    thumbLabel: true,
-    value: 5
+
+  commentFormErrors = {
+    'author': '',
+    'comment': ''
   };
 
-  commentFormErrors: {
-    author: '',
-    comment: ''
+  commentFormValidationMessages = {
+    'author': {
+      'required': 'author is required',
+      'minlength': 'author must be at least 2 characters long'
+    },
+    'comment': {
+      'required': 'comment is required'
+    }
   };
 
 
@@ -81,11 +84,29 @@ export class DishdetailComponent implements OnInit {
       rating: 5,
       comment: ['', [Validators.required]],
       author: ['', [Validators.required, Validators.minLength(2)]],
-      date: ['']
+      date: ''
     });
+
+    this.commentForm.valueChanges
+      .subscribe(data => this.onCommentFormValueChange(data));
+
+    this.onCommentFormValueChange();
   }
 
   onCommentSubmit() {
     console.log('comment submit');
+  }
+
+  private onCommentFormValueChange(data?: any) {
+    if (!this.commentForm) return;
+    Object.keys(this.commentFormErrors)
+      .map(key => {
+        this.commentFormErrors[key] = '';
+        if (this.commentForm.get(key).dirty && this.commentForm.get(key).invalid) {
+          Object.keys(this.commentForm.get(key).errors).map(errorKey => {
+            this.commentFormErrors[key] = this.commentFormValidationMessages[key][errorKey] + ' ';
+          });
+        }
+      });
   }
 }

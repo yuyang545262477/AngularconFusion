@@ -52,11 +52,11 @@
         <!--author-->
         <md-input-container>
           <input mdInput type="text" formControlName="author" placeholder="Name" required>
-          <!--<md-hint>-->
-          <!--<span [hidden]="commentFormErrors.author">-->
-          <!--{{commentFormErrors.author}}-->
-          <!--</span>-->
-          <!--</md-hint>-->
+          <md-hint>
+          <span [hidden]="!(commentFormErrors.author)">
+          {{commentFormErrors.author}}
+          </span>
+          </md-hint>
         </md-input-container>
       </p>
       <p>
@@ -66,6 +66,9 @@
       <p>
         <md-input-container>
           <textarea mdInput rows="10" formControlName="comment" placeholder="Your Comment" required></textarea>
+          <md-hint [hidden]="!(commentFormErrors.comment)">
+            <span>{{commentFormErrors.comment}}</span>
+          </md-hint>
         </md-input-container>
       </p>
       <button type="submit" md-button class="background-primary text-floral-white" [disabled]="commentForm.invalid">
