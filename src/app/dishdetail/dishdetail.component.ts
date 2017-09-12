@@ -6,14 +6,15 @@ import 'rxjs/add/operator/switchMap';
 import {DishService} from '../services/dish.service';
 
 import {Dish} from '../shared/dish';
-import {visibility} from '../animations/app.animation';
+import {expand, visibility} from '../animations/app.animation';
 
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
   styleUrls: ['./dishdetail.component.scss'],
   animations: [
-    visibility()
+    visibility(),
+    expand()
   ]
 })
 export class DishdetailComponent implements OnInit {
