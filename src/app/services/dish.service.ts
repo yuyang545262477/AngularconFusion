@@ -9,43 +9,25 @@ import {Dish} from '../shared/dish';
 
 import {ProcessHttpMsgService} from './process-http-msg.service';
 import {baseURL} from '../shared/baseurl';
+import {Restangular} from 'ngx-restangular';
 
 @Injectable()
 export class DishService {
 
-  constructor(private _http: Http,
+  constructor(private _restangular: Restangular,
               private _processHttpMsgService: ProcessHttpMsgService) {
   }
 
   getDishes(): Observable<Dish[]> {
-    return this._http.get(baseURL + 'dishes')
-      .map(res => {
-        console.log('dishService res', res);
-        return this._processHttpMsgService.extractData(res);
-      })
-      .catch(httpError => {
-        return this._processHttpMsgService.handleError(httpError);
-      });
+    return this._restangular.all('dishes').getList();
   }
 
   getDish(id: number): Observable<Dish> {
-    return this._http.get(`${baseURL}dishes/${id}`)
-      .map(res => {
-        return this._processHttpMsgService.extractData(res);
-      })
-      .catch(httpError => {
-        return this._processHttpMsgService.handleError(httpError);
-      });
+    return this._restangular.one('dishes', id).get();
   }
 
   getFeaturedDish(): Observable<Dish> {
-    return this._http.get(`${baseURL}dishes?featured=true`)
-      .map(res => {
-        return this._processHttpMsgService.extractData(res);
-      })
-      .catch(httpError => {
-        return this._processHttpMsgService.handleError(httpError);
-      });
+    return this._restangular.all('dishes').getList({featured: true}).map(dishes => dishes[0]);
   }
 
 

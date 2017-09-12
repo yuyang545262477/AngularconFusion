@@ -24,6 +24,8 @@ import {LoginComponent} from './login/login.component';
 import {HttpModule} from '@angular/http';
 import {baseURL} from './shared/baseurl';
 import {ProcessHttpMsgService} from './services/process-http-msg.service';
+import {RestangularModule} from 'ngx-restangular';
+import {RestangularConfigFactory} from './shared/restConfig';
 
 // noinspection JSDeprecatedSymbols
 @NgModule({
@@ -46,10 +48,14 @@ import {ProcessHttpMsgService} from './services/process-http-msg.service';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    RestangularModule.forRoot(RestangularConfigFactory)
   ],
-  providers: [DishService, PromotionService, LeaderService,
-    {provide: 'BaseURL', useValue: baseURL}, ProcessHttpMsgService],
+  providers: [DishService,
+    PromotionService,
+    LeaderService,
+    ProcessHttpMsgService,
+    {provide: 'BaseURL', useValue: baseURL}],
   entryComponents: [LoginComponent],
   bootstrap: [AppComponent]
 })

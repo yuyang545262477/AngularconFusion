@@ -20,6 +20,7 @@ export class DishdetailComponent implements OnInit {
   prev: number;
   next: number;
 
+  dishCopy = null;
   commentFormErrors = {
     'author': '',
     'comment': ''
@@ -53,6 +54,7 @@ export class DishdetailComponent implements OnInit {
       .switchMap((params: Params) => this._dishService.getDish(+params['id']))
       .subscribe(dish => {
         this.dish = dish;
+        this.dishCopy = dish;
         this._setPrevNext(dish.id);
       });
   }
@@ -95,10 +97,13 @@ export class DishdetailComponent implements OnInit {
   }
 
   onCommentSubmit() {
-
+    let comment;
     /**@des update comments*/
     this.commentForm.controls['date'].setValue(new Date().toISOString());
-    this.dish.comments.push(this.commentForm.value);
+    comment = this.commentForm.value;
+    this.dishCopy.comments.push(comment);
+    this.dishCopy.save()
+      .subscribe(dish => this.dish = dish);
     /**@des reset form*/
     this.commentForm.reset({
       rating: 5,
