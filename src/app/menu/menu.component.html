@@ -8,15 +8,23 @@
       <hr>
     </div>
   </div>
-
   <div>
     <md-grid-list cols="2" rowHeight="200px">
       <md-grid-tile *ngFor="let dish of dishes" [routerLink]="['/dishdetail',dish.id]">
-        <img height="200px" src="{{_baseUrl+ dish.image}}" alt="{{_baseUrl+ dish.name}}">
-        <md-grid-tile-footer>
+        <img height="200px" src="{{_baseUrl+ dish.image}}" alt="{{_baseUrl+ dish.name}}" *ngIf="dish">
+        <md-grid-tile-footer *ngIf="dish">
           <h1 md-line>{{dish.name|uppercase}}</h1>
         </md-grid-tile-footer>
+        <div [hidden]="dish||errMess">
+          <md-spinner></md-spinner>
+          <h4>Loading....Please Wait</h4>
+        </div>
+        <div *ngIf="errMess">
+          <h3>Error</h3>
+          <h4>{{errMess}}</h4>
+        </div>
       </md-grid-tile>
     </md-grid-list>
+
   </div>
 </div>

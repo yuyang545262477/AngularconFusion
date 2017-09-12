@@ -5,7 +5,6 @@ import 'rxjs/add/operator/catch';
 import {Observable} from 'rxjs/Observable';
 import {Http} from '@angular/http';
 
-import {DISHES} from '../shared/dishes';
 import {Dish} from '../shared/dish';
 
 import {ProcessHttpMsgService} from './process-http-msg.service';
@@ -23,6 +22,9 @@ export class DishService {
       .map(res => {
         console.log('dishService res', res);
         return this._processHttpMsgService.extractData(res);
+      })
+      .catch(httpError => {
+        return this._processHttpMsgService.handleError(httpError);
       });
   }
 
@@ -30,6 +32,9 @@ export class DishService {
     return this._http.get(`${baseURL}dishes/${id}`)
       .map(res => {
         return this._processHttpMsgService.extractData(res);
+      })
+      .catch(httpError => {
+        return this._processHttpMsgService.handleError(httpError);
       });
   }
 
@@ -37,6 +42,9 @@ export class DishService {
     return this._http.get(`${baseURL}dishes?featured=true`)
       .map(res => {
         return this._processHttpMsgService.extractData(res);
+      })
+      .catch(httpError => {
+        return this._processHttpMsgService.handleError(httpError);
       });
   }
 
@@ -45,6 +53,9 @@ export class DishService {
     return this.getDishes()
       .map(dishes => {
         return dishes.map(dish => dish.id);
+      })
+      .catch(httpError => {
+        return this._processHttpMsgService.handleError(httpError);
       });
   }
 

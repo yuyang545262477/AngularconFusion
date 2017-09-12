@@ -9,16 +9,17 @@ import {inject} from '@angular/core/testing';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-
+  errMess: string;
   dishes: Dish[];
 
   constructor(private dishService: DishService,
-              @Inject('BaseURL') public _baseUrl) {
+              @Inject('BaseURL') private _baseUrl) {
   }
 
   ngOnInit() {
     this.dishService.getDishes()
-      .subscribe(dishes => this.dishes = dishes);
+      .subscribe(dishes => this.dishes = dishes,
+        backErrorMsg => this.errMess = <any>backErrorMsg);
   }
 
 
