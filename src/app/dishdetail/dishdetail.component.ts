@@ -1,7 +1,7 @@
 import {Location} from '@angular/common';
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Data, Params} from '@angular/router';
+import {ActivatedRoute, Params} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import {DishService} from '../services/dish.service';
 
