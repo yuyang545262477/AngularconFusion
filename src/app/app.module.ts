@@ -23,6 +23,7 @@ import {LeaderService} from './services/leader.service';
 import {LoginComponent} from './login/login.component';
 import {HttpModule} from '@angular/http';
 import {baseURL} from './shared/baseurl';
+import {ProcessHttpMsgService} from './services/process-http-msg.service';
 
 // noinspection JSDeprecatedSymbols
 @NgModule({
@@ -47,7 +48,8 @@ import {baseURL} from './shared/baseurl';
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [DishService, PromotionService, LeaderService, {provide: 'BaseURl', useValue: baseURL}],
+  providers: [DishService, PromotionService, LeaderService,
+    {provide: 'BaseURL', useValue: baseURL}, ProcessHttpMsgService],
   entryComponents: [LoginComponent],
   bootstrap: [AppComponent]
 })
