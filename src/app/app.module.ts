@@ -26,6 +26,7 @@ import {baseURL} from './shared/baseurl';
 import {ProcessHttpMsgService} from './services/process-http-msg.service';
 import {RestangularModule} from 'ngx-restangular';
 import {RestangularConfigFactory} from './shared/restConfig';
+import {HighlightDirective} from './directives/highlight.directive';
 
 // noinspection JSDeprecatedSymbols
 @NgModule({
@@ -39,6 +40,7 @@ import {RestangularConfigFactory} from './shared/restConfig';
     AboutComponent,
     ContactComponent,
     LoginComponent,
+    HighlightDirective,
   ],
   imports: [
     BrowserModule,
