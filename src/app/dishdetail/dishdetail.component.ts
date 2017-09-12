@@ -6,24 +6,14 @@ import 'rxjs/add/operator/switchMap';
 import {DishService} from '../services/dish.service';
 
 import {Dish} from '../shared/dish';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import {visibility} from '../animations/app.animation';
 
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
   styleUrls: ['./dishdetail.component.scss'],
   animations: [
-    trigger('visibility', [
-      state('shown', style({
-        transform: 'scale(1.0)',
-        opacity: 1
-      })),
-      state('hidden', style({
-        transform: 'scale(.5)',
-        opacity: 0
-      })),
-      transition('*=>*', animate('.5s ease-in-out'))
-    ])
+    visibility()
   ]
 })
 export class DishdetailComponent implements OnInit {
