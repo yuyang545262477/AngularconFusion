@@ -1,21 +1,19 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/catch';
 import {Observable} from 'rxjs/Observable';
-import {Http} from '@angular/http';
 
 import {Dish} from '../shared/dish';
-
 import {ProcessHttpMsgService} from './process-http-msg.service';
-import {baseURL} from '../shared/baseurl';
 import {Restangular} from 'ngx-restangular';
 
 @Injectable()
 export class DishService {
 
   constructor(private _restangular: Restangular,
-              private _processHttpMsgService: ProcessHttpMsgService) {
+              private _processHttpMsgService: ProcessHttpMsgService,
+              @Inject('BaseURL') private _baseUrl) {
   }
 
   getDishes(): Observable<Dish[]> {

@@ -136,12 +136,4 @@ export class DishdetailComponent implements OnInit {
         }
       });
   }
-
-  // private resetClear() {
-  //   if (!this.commentForm) return;
-  //   Object.keys(this.commentForm.controls).map(key => {
-  //     console.log(this.commentForm.controls[key]);
-  //     this.commentForm.controls[key].setErrors(null);
-  //   });
-  // }
 }
