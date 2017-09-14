@@ -27,6 +27,7 @@ import {ProcessHttpMsgService} from './services/process-http-msg.service';
 import {RestangularModule} from 'ngx-restangular';
 import {RestangularConfigFactory} from './shared/restConfig';
 import {HighlightDirective} from './directives/highlight.directive';
+import {FeedbackService} from './services/feedback.service';
 
 // noinspection JSDeprecatedSymbols
 @NgModule({
@@ -57,6 +58,7 @@ import {HighlightDirective} from './directives/highlight.directive';
     PromotionService,
     LeaderService,
     ProcessHttpMsgService,
+    FeedbackService,
     {provide: 'BaseURL', useValue: baseURL}],
   entryComponents: [LoginComponent],
   bootstrap: [AppComponent]
