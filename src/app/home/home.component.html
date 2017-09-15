@@ -14,11 +14,13 @@
     </md-card-header>
     <img md-card-image src={{_baseUrl+dish.image}} alt={{dish.name}}>
     <md-card-content>
-      <p>{{dish.description}}
-      </p>
+      <p>{{dish.description}}</p>
     </md-card-content>
   </md-card>
-
+  <div fxFlex *ngIf="dishError">
+    <h5>dish Error</h5>
+    {{dishError}}
+  </div>
   <md-card *ngIf="promotion" fxFlex>
     <md-card-header>
       <div md-card-avatar></div>
@@ -32,6 +34,10 @@
       </p>
     </md-card-content>
   </md-card>
+  <div fxFlex *ngIf="promotionError">
+    <h5>promotion Error</h5>
+    {{promotionError}}
+  </div>
 
   <md-card *ngIf="leader" fxFlex>
     <md-card-header>
@@ -42,9 +48,12 @@
     </md-card-header>
     <img md-card-image src={{_baseUrl+leader.image}} alt={{leader.name}}>
     <md-card-content>
-      <p>{{leader.description}}
-      </p>
+      <p>{{leader.description}}</p>
     </md-card-content>
   </md-card>
+  <div fxFlex="" *ngIf="leaderError">
+    <h5>leader Error</h5>
+    {{leaderError}}
+  </div>
 
 </div>

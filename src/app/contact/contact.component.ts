@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ContactType} from '../shared/contactType';
 import {Feedback} from '../shared/feedback';
-import {flyInOut} from '../animations/app.animation';
+import {expand, flyInOut} from '../animations/app.animation';
 import {FeedbackService} from '../services/feedback.service';
 
 @Component({
@@ -14,7 +14,8 @@ import {FeedbackService} from '../services/feedback.service';
     'style': 'display:block'
   },
   animations: [
-    flyInOut()
+    flyInOut(),
+    expand()
   ]
 })
 export class ContactComponent implements OnInit {
@@ -23,7 +24,7 @@ export class ContactComponent implements OnInit {
   feedback: Feedback;
   contactType = ContactType;
   feedBackCopy: Feedback;
-
+  isRequesting: Boolean;
   formErrors = {
     'firstname': '',
     'lastname': '',
@@ -56,6 +57,7 @@ export class ContactComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder,
               private _feedBackService: FeedbackService) {
     this.createForm();
+    this.isRequesting = false;
   }
 
   ngOnInit() {
@@ -80,8 +82,10 @@ export class ContactComponent implements OnInit {
 
   onSubmit() {
     // this.feedback = this.feedbackForm.value;
+    this.isRequesting = true;
     this._feedBackService.submitFeedback(this.feedbackForm.value)
       .subscribe(response => {
+        this.isRequesting = false;
         this.feedBackCopy = response;
         setTimeout(() => this.feedBackCopy = null, 5000);
       });

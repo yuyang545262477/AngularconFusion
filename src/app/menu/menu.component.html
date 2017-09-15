@@ -19,12 +19,13 @@
           <md-spinner></md-spinner>
           <h4>Loading....Please Wait</h4>
         </div>
-        <div *ngIf="errMess">
-          <h3>Error</h3>
-          <h4>{{errMess}}</h4>
-        </div>
       </md-grid-tile>
+      <div *ngIf="errMess">
+        <h3>Error</h3>
+        <h4>{{errMess}}</h4>
+      </div>
     </md-grid-list>
+
 
   </div>
 </div>

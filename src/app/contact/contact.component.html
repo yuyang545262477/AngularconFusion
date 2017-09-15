@@ -40,11 +40,21 @@
 
   <div fxFlex fxFlexOffset="20px" class="form-size">
     <h3>Seed us your Feedback</h3>
-    <div [hidden]="feedBackCopy">
+    <div *ngIf="isRequesting" [@expand]>
       <h3>Submitting Form</h3>
       <md-spinner></md-spinner>
     </div>
-    <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()" [hidden]="feedBackCopy">
+    <div *ngIf="feedBackCopy" [@expand]>
+      <h3>Your Submission</h3>
+      <p><span>First Name:</span>{{feedBackCopy.firstname}}</p>
+      <p><span>Last Name:</span>{{feedBackCopy.lastname}}</p>
+      <p><span>Tel. Number:</span>{{feedBackCopy.telnum}}</p>
+      <p><span>Email:</span>{{feedBackCopy.email}}</p>
+      <p><span>Contact You?:</span>{{feedBackCopy.agree}}</p>
+      <p><span>How ?:</span>{{feedBackCopy.contacttype}}</p>
+      <p><span>Feedback:</span>{{feedBackCopy.message}}</p>
+    </div>
+    <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()" [hidden]="feedBackCopy||isRequesting" [@expand]>
       <p>
         <md-input-container class="half-width"
                             dividerColor="{{(formErrors.firstname) ? 'warn' : 'primary'}}">

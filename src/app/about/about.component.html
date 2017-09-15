@@ -67,6 +67,10 @@
         <p mdLine>{{leader.designation}}</p>
         <p mdLine>{{leader.description}}</p>
       </md-list-item>
+      <div *ngIf="leadersError">
+        <h5>leaders Request Error</h5>
+        {{leadersError}}
+      </div>
     </md-list>
   </div>
 </div>
